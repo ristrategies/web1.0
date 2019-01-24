@@ -1,4 +1,4 @@
-# Jenkind Makefile
+# Jenkind Makefile Jan 23,2019
 #  this file should be located in jenkins/workspace/<project_name>   
 
 VERSION ?= 0.1.0
