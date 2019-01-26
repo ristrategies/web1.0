@@ -1,5 +1,6 @@
-# Jenkind Makefile Jan 23,2019
+# Jenkind Makefile
 #  this file should be located in jenkins/workspace/<project_name>   
+# git push https://username:password@myrepository.biz/file.git
 
 VERSION ?= 0.1.0
 APPLICATION ?= jenkins-pipelines
