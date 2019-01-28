@@ -22,5 +22,5 @@ checkout :
 	git pull https://github.com/ristrategies/web1.0/ jenkinspipline1
 
 clean: 
-	echo -n "Cleaning. echo make env BUILDENV: ${BUILDENV}: " ; pwd
+	echo -n "Cleaning. Version: ${BUILDVER}: " 
 	rm -rf build

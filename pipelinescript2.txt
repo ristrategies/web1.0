@@ -1,0 +1,42 @@
+pipeline {
+      environment {
+            usernamelcl = '1.2.13.45'
+      }
+    agent any 
+
+    stages {
+        stage('checkout'){
+            steps{
+                /* clean dir */
+                /* check out Makefile */
+                sh 'git init'
+                sh 'MAS=`git branch -a | grep master/master`;if [[ "$MAS" != *"remotes/master/master"* ]] ; then git remote add master https://github.com/ristrategies/web1.0; git checkout -b master; fi'
+                /* Username for 'https://github.com': rich@rjstrategies.com */
+                /* Password for 'https://rich@rjstrategies.com@github.com': merc1234 */
+                sh 'git fetch https://github.com/ristrategies/web1.0/'
+                sh 'git checkout FETCH_HEAD -- Makefile index.php'
+                sh 'export BUILDVER="$JOB_NAME"; echo "env BUILDVER:$BUILDVER"; make clean'
+            }
+        }
+        stage('Build') {
+            steps {
+                /* test commands */
+                /* Only double quotes will support the dollar-sign ($) based string interpolation, */
+                echo "Hello world! ${usernamelcl}"
+                sh 'id ; pwd > buildoutput.txt'
+            }
+        }
+              stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'stage Deploy'
+                echo 'Building Branch: ' + env.USERNAM
+            }
+        }
+    }
+}
+
